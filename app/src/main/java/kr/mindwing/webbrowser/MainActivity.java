@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText textUrl;
+    private WebView webView;
     private OnKeyListener listener = new OnKeyListener() {
 
         @Override
@@ -24,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (keyCode) {
                 case KeyEvent.KEYCODE_ENTER:
-                    Toast.makeText(
-                            MainActivity.this,
-                            textUrl.getText().toString(), Toast.LENGTH_SHORT).show();
+                    webView.loadUrl(textUrl.getText().toString());
 
                     processed = true;
 
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
             return processed;
         }
-
     };
 
 
@@ -55,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     private void setupUI() {
         textUrl = (EditText) findViewById(R.id.text_url);
         textUrl.setOnKeyListener(listener);
+        textUrl.setText("http://facebook.com");
+
+        webView = (WebView) findViewById(R.id.webview);
+        webView.setWebViewClient(new WebViewClient());
     }
 
     private void hideActionBar() {
