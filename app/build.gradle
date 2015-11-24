@@ -2,14 +2,26 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
-
+    buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "kr.mindwing.webbrowser"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+    }
+    dexOptions {
+        incremental true
+    }
+    productFlavors {
+        dev {
+            minSdkVersion 21
+            return true
+        }
+        prod {
+            minSdkVersion 15
+            return true
+        }
     }
     buildTypes {
         release {

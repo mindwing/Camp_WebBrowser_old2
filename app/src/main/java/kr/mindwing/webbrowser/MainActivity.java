@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText textUrl;
+    private EditText textUrl1;
     private WebView webView;
     private Button backButton, forwardButton;
     private OnKeyListener listener = new OnKeyListener() {
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
             switch (keyCode) {
                 case KeyEvent.KEYCODE_ENTER:
-                    webView.loadUrl(textUrl.getText().toString());
+                    webView.loadUrl(textUrl1.getText().toString());
 
                     processed = true;
 
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
         });
         forwardButton = (Button) findViewById(R.id.forward);
 
-        textUrl = (EditText) findViewById(R.id.text_url);
-        textUrl.setOnKeyListener(listener);
-        textUrl.setText("http://google.com");
+        textUrl1 = (EditText) findViewById(R.id.text_url);
+        textUrl1.setOnKeyListener(listener);
+        textUrl1.setText("http://google.com");
 
         webView = (WebView) findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
     }
 }
